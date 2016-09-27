@@ -10,7 +10,12 @@ namespace Aplication
 {
     class EscritorTXT : IStrategyEscritor<EscritorTXT>
     {
-        string filePath = @"salida.txt";
+        private String filePath = @"salida.txt";
+
+        public void setFilePath(String pFilePath)
+        {
+            this.filePath = pFilePath;
+        }
 
         public void Escribir(String pTexto, String pAlgoritmo, String pModo, String pResultado) {
             try
