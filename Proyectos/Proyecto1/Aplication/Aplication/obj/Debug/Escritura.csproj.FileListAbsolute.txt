@@ -1,0 +1,5 @@
+C:\Users\Saul\Documents\TEC\2016 - Semestre II\Diseño\Proyectos\Proyecto1\Aplication\Aplication\bin\Debug\Aplication.dll
+C:\Users\Saul\Documents\TEC\2016 - Semestre II\Diseño\Proyectos\Proyecto1\Aplication\Aplication\bin\Debug\Aplication.pdb
+C:\Users\Saul\Documents\TEC\2016 - Semestre II\Diseño\Proyectos\Proyecto1\Aplication\Aplication\obj\Debug\Escritura.csprojResolveAssemblyReference.cache
+C:\Users\Saul\Documents\TEC\2016 - Semestre II\Diseño\Proyectos\Proyecto1\Aplication\Aplication\obj\Debug\Aplication.dll
+C:\Users\Saul\Documents\TEC\2016 - Semestre II\Diseño\Proyectos\Proyecto1\Aplication\Aplication\obj\Debug\Aplication.pdb
