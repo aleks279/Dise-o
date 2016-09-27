@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EscritorTXT.cs" />
     <Compile Include="IStrategyEscritor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

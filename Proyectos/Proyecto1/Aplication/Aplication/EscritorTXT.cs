@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Aplication
 {
-    class EscritorTEXT : IStrategyEscritor<EscritorTEXT>
+    class EscritorTXT : IStrategyEscritor<EscritorTXT>
     {
         string filePath = @"salida.txt";
 
