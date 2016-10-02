@@ -1,0 +1,11 @@
+Fecha: 1/10/2016 11:52:21 p. m.
+Algoritmo: 
+Modo: 
+Texto original:
+
+{Tipo de operación: encriptación, Método: Código telefónico, Resultado: 93 21 * 62 63 * 32 74 81 21 61 63 74 * 71 21 41 21 62 31 63 }
+{Tipo de operación: desencriptación, Método: Código telefónico, Resultado: ya no estamos pagando}
+
+Resultado:
+
+

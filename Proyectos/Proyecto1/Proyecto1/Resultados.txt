@@ -1,0 +1,16 @@
+Fecha: 2/10/2016 2:50:29 a. m.
+Algoritmo: Codificación binaria
+Modo: encriptación
+Texto original:
+
+Resultado:
+
+00001 01000 00100 01101  * 11000 00000 * 01101 01110 * 01111 00000 00110 00000 01100 01110 10010 
+Fecha: 2/10/2016 2:50:29 a. m.
+Algoritmo: Codificación binaria
+Modo: desencriptación
+Texto original:
+
+Resultado:
+
+bien ya no pagamos

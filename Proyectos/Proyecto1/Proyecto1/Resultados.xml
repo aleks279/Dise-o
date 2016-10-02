@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Salidas>
+  <Salida>
+    <Fecha>2/10/2016 2:50:50 a. m.</Fecha>
+    <Algoritmo>Codificación binaria</Algoritmo>
+    <Modo>encriptación</Modo>
+    <Resultado>00001 01000 00100 01101  * 11000 00000 * 01101 01110 * 01111 00000 00110 00000 01100 01110 10010 </Resultado>
+  </Salida>
+  <Salida>
+    <Fecha>2/10/2016 2:50:50 a. m.</Fecha>
+    <Algoritmo>Codificación binaria</Algoritmo>
+    <Modo>desencriptación</Modo>
+    <Resultado>bien ya no pagamos</Resultado>
+  </Salida>
+</Salidas>
