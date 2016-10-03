@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Proyecto1.View
 {
-    partial class EncryptDecryptGUI:IUserOperations
+    partial class EncryptDecryptGUI
     {
         /// <summary>
         /// Required designer variable.
