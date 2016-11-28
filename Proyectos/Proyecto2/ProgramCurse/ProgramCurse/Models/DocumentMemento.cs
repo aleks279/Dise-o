@@ -11,20 +11,21 @@ using System.Text;
 
 public class DocumentMemento
 {
-	private DocumentContext state
+    private DocumentContext state;
+
+    public DocumentMemento(DocumentContext pState)
+    {
+        this.state = pState;
+    }
+
+    public DocumentContext getState()
 	{
-		get;
-		set;
+        return this.state;
 	}
 
-	public virtual DocumentContext getState()
+	public void setState(DocumentContext pState)
 	{
-		throw new System.NotImplementedException();
-	}
-
-	public virtual void setState(DocumentContext pState)
-	{
-		throw new System.NotImplementedException();
+        this.state = pState;
 	}
 
 }

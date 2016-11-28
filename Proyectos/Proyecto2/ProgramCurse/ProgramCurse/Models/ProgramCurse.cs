@@ -9,16 +9,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class Draft : DocumentState
+public class ProgramCurse
 {
-    private State myState;
-    public Draft()
+    private Curse curse;
+    private DocumentContext document;
+
+    public ProgramCurse(DocumentContext pDocument, Curse pCurse)
     {
-        this.myState = State.Draft;
+        this.document = pDocument;
+        this.curse = pCurse;
     }
-    public State getMyState()
-    {
-        return this.myState;
-    }
+
+    public DocumentContext getDocument()
+	{
+        return this.document;
+	}
+    
 }
 

@@ -11,31 +11,29 @@ using System.Text;
 
 public abstract class Component
 {
-	private string title
-	{
-		get;
-		set;
-	}
+    private string title;
 
-	private string Id
-	{
-		get;
-		set;
-	}
+    private string Id;
+
+    public Component(string pTitle, string pId)
+    {
+        this.title = pTitle;
+        this.Id = pId;
+    }
 
 	public virtual string getTitle()
 	{
-		throw new System.NotImplementedException();
+        return this.title;
 	}
 
-	public virtual void setTitle(string pTitle)
-	{
-		throw new System.NotImplementedException();
-	}
+    public virtual string getId()
+    {
+        return this.Id;
+    }
 
-	public virtual string getId()
+    public virtual void setTitle(string pTitle)
 	{
-		throw new System.NotImplementedException();
+        this.title = pTitle;
 	}
 
 }

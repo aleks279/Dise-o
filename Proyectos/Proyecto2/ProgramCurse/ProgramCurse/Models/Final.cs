@@ -11,15 +11,14 @@ using System.Text;
 
 public class Final : DocumentState
 {
-	public virtual void add(pId:sting, pComponent: Component()
-	{
-		throw new System.NotImplementedException();
-	}
-
-	public virtual void remove(string pId)
-	{
-		throw new System.NotImplementedException();
-	}
-
+    private State myState;
+    public Final()
+    {
+        this.myState = State.Final;
+    }
+    public State getMyState()
+    {
+        return this.myState;
+    }
 }
 

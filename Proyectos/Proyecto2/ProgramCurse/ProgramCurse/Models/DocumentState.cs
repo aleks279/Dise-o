@@ -11,9 +11,7 @@ using System.Text;
 
 public interface DocumentState 
 {
-	void add(pId:sting, pComponent: Component();
-
-	void remove(string pId);
+    State getMyState();
 
 }
 

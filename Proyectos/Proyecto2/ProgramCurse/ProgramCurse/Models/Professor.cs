@@ -11,11 +11,11 @@ using System.Text;
 
 public class Professor : User
 {
-	public virtual IEnumerable<Curse> Curso
-	{
-		get;
-		set;
-	}
+    public List<Curse> ProgramCurses;
 
+    public Professor(string pName, string pEmail, List<Curse> pProgramCurses) : base(pName, pEmail)
+    {
+        this.ProgramCurses = pProgramCurses;
+    }
 }
 

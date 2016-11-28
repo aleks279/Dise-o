@@ -11,21 +11,26 @@ using System.Text;
 
 public class TextLineLeaf : Component
 {
-	private string textContentLine
-	{
-		get;
-		set;
-	}
+    private string textContentLine;
 
-	public virtual string getTextContentLine()
+    public TextLineLeaf(string pTextContextLine, string pTitle, string pId):base(pTitle, pId)
+    {
+        this.textContentLine = pTextContextLine;
+    }
+
+	public string getTextContentLine()
 	{
-		throw new System.NotImplementedException();
+        return this.textContentLine;
 	}
 
 	public virtual void setTextContentLine(string pTextContextLine)
 	{
-		throw new System.NotImplementedException();
+        this.textContentLine = pTextContextLine;
 	}
-
+    
+    public override string ToString()
+    {
+        return base.getTitle() + " " + this.getTextContentLine();
+    }
 }
 

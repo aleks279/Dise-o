@@ -11,11 +11,11 @@ using System.Text;
 
 public class CEDAManager : User
 {
-	public virtual TEC_CEDA TEC_CEDA
-	{
-		get;
-		set;
-	}
+    public TEC_CEDA TEC_CEDA;
 
+    public CEDAManager(string pName, string pEmail, TEC_CEDA plantilla) : base(pName, pEmail)
+    {
+        this.TEC_CEDA = plantilla;
+    }
 }
 

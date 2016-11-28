@@ -11,10 +11,41 @@ using System.Text;
 
 public class SectionContext : CompositeElement
 {
-	public virtual void add(string pId, ProgramCurseDiagram::SubsectionContext pComponent)
+    public SectionContext(string pTitle, string pId) : base(pTitle, pId, new Dictionary<int, bool>
+    {
+        {1, false},
+        {2, true},
+        {3, true}
+    })
+    {
+
+    }
+
+    public void add(SectionContext pComponent)
 	{
-		throw new System.NotImplementedException();
+        base.add(pComponent);
 	}
+
+    public void add(TextLineLeaf pComponent)
+    {
+        base.add(pComponent);
+    }
+
+    public override void remove(string pId)
+    {
+        base.remove(pId);
+    }
+
+    public override string ToString()
+    {
+        string result = this.getTitle() + ": {\n";
+        int maxI = base.getChildCount();
+        for (int i = 0; i < maxI; i++)
+        {
+            result += (i+1).ToString() + ". " + base.getChild(i).ToString() + "\n";
+        }
+        return result + "}";
+    }
 
 }
 

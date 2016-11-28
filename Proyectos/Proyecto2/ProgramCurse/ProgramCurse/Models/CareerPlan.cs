@@ -9,41 +9,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class CareerPlan : Observable, Observer
+public class CareerPlan
 {
-	private string planId
+    private string planId;
+
+    private string faculty;
+
+    private string career;
+
+    public DocumentState state;
+
+    private DocumentContext document;
+
+    public CareerPlan(string pPlanId, string pFaculty, string pCareer, DocumentState pState, DocumentContext pDocument)
+    {
+        this.planId = pPlanId;
+        this.faculty = pFaculty;
+        this.career = pCareer;
+        this.state = pState;
+        this.document = pDocument;
+    }
+
+    public DocumentContext getDocument()
 	{
-		get;
-		set;
+		return this.document;
 	}
 
-	private DocumentContext CareerTemplate
-	{
-		get;
-		set;
-	}
+    public void changeState(DocumentState pState)
+    {
+        this.state = pState;
+    }
 
-	private string faculty
-	{
-		get;
-		set;
-	}
+    public string getPlanID()
+    {
+        return this.planId;
+    }
 
-	public virtual TEC_CEDA TEC_CEDA
-	{
-		get;
-		set;
-	}
+    public string getFaculty()
+    {
+        return this.faculty;
+    }
 
-	public virtual DocumentContext getDocument()
-	{
-		throw new System.NotImplementedException();
-	}
-
-	public virtual void setDocument(DocumentContext pDocument)
-	{
-		throw new System.NotImplementedException();
-	}
-
+    public string getCareer()
+    {
+        return this.career;
+    }
 }
 

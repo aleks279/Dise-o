@@ -11,11 +11,12 @@ using System.Text;
 
 public class CurricularManager : User
 {
-	public virtual CareerPlan PlanCarrera
-	{
-		get;
-		set;
-	}
 
+    public CareerPlan PlanCarrera;
+
+    public CurricularManager(string pName, string pEmail, CareerPlan pPlan) : base(pName, pEmail)
+    {
+        this.PlanCarrera = pPlan;
+    }
 }
 
