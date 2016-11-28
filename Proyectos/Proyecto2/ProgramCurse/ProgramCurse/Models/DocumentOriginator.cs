@@ -11,20 +11,17 @@ using System.Text;
 
 public class DocumentOriginator
 {
-	private DocumentMemento state
+    private DocumentMemento state;
+
+	public DocumentMemento createMemento()
 	{
-		get;
-		set;
+        DocumentContext mementoState = state.getState();
+        return new DocumentMemento(mementoState.clone());
 	}
 
-	public virtual DocumentMemento createMemento()
+	public void setMemento(DocumentMemento pMemento)
 	{
-		throw new System.NotImplementedException();
-	}
-
-	public virtual void setMemento(DocumentMemento pMemento)
-	{
-		throw new System.NotImplementedException();
+        this.state = pMemento;
 	}
 
 }

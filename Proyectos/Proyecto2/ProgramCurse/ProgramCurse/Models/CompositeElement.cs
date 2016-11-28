@@ -11,42 +11,63 @@ using System.Text;
 
 public abstract class CompositeElement : Component
 {
-	private Dictionary<int, bool> Access
+    private Dictionary<int, bool> access;
+
+    private List<Component> componentList;
+
+    public CompositeElement(string pTitle, string pId, Dictionary<int, bool> pAccess) : base(pTitle, pId)
+    {
+        componentList = new List<Component>();
+    }
+
+    public void activateAccessLevel(int pLevel)
 	{
-		get;
-		set;
+        access[pLevel] = true;
 	}
 
-	public virtual IEnumerable<Component> Component
+	public void deactivateAccessLevel(int pLevel)
 	{
-		get;
-		set;
-	}
+        access[pLevel] = false;
+    }
 
-	public virtual void activateAccessLevel(int pLevel)
-	{
-		throw new System.NotImplementedException();
-	}
+    public Dictionary<int, bool> getAccessLevels()
+    {
+        return this.access;
+    }
 
-	public virtual void deactivateAccessLevel(int pLevel)
+	protected void add(Component pComponent)
 	{
-		throw new System.NotImplementedException();
-	}
-
-	public virtual void add(string pId, Component pComponent)
-	{
-		throw new System.NotImplementedException();
+        this.componentList.Add(pComponent);
 	}
 
 	public virtual void remove(string pId)
 	{
-		throw new System.NotImplementedException();
+        Component toRemove = this.getChild(pId);
+        this.componentList.Remove(toRemove);
 	}
 
-	public virtual Component getChild(string pId)
+	public Component getChild(string pId)
 	{
-		throw new System.NotImplementedException();
+        Component result = null;
+        int maxI = this.componentList.Count;
+		for (int i = 0; i < maxI; i++)
+        {
+            if (this.componentList[i].getId().Equals(pId))
+            {
+                result = this.componentList[i];
+            }
+        }
+        return result;
 	}
 
+    public Component getChild(int pIndex)
+    {
+        return this.componentList.ElementAt<Component>(pIndex);
+    }
+
+    public int getChildCount()
+    {
+        return this.componentList.Count;
+    }
 }
 

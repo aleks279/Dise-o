@@ -6,37 +6,56 @@
 //------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
+using System.Runtime.Serialization.Formatters.Binary;
 
-public class DocumentContext : CompositeElement, Prototype
+
+public class DocumentContext : CompositeElement, Prototype<DocumentContext>
 {
-	public virtual DocumentState DocumentState
+
+    private DocumentOriginator DocumentOriginator;
+
+    private string validity;
+
+    public DocumentContext(string pTitle, string pId, string pValidity) : base(pTitle, pId, new Dictionary<int, bool>
+    {
+        {1, false},
+        {2, false},
+        {3, true}
+    })
+    {
+        this.validity = pValidity;
+    }
+
+    public void add(SectionContext pComponent)
 	{
-		get;
-		set;
+        base.add(pComponent);
 	}
 
-	public virtual DocumentOriginator DocumentOriginator
-	{
-		get;
-		set;
-	}
+    public DocumentContext clone()
+    {
+        using(Stream objectStream = new MemoryStream())
+        {
+            IFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(objectStream, this);
+            objectStream.Seek(0, SeekOrigin.Begin);
+            return (DocumentContext)formatter.Deserialize(objectStream);
+        }
+    }
 
-	public virtual void add(string pId, SectionContext pComponent)
-	{
-		throw new System.NotImplementedException();
-	}
-
-	public virtual void changeState(DocumentState pState)
-	{
-		throw new System.NotImplementedException();
-	}
-
-	public virtual Prototype clone()
-	{
-		throw new System.NotImplementedException();
-	}
+    public override string ToString()
+    {
+        string result = this.getTitle() + ":{\n";
+        int maxI = base.getChildCount();
+        for (int i = 0; i < maxI; i++)
+        {
+            result += (i+1).ToString() + ". " + base.getChild(i).ToString() + "\n";
+        }
+        return result + "}";
+    }
 
 }
 

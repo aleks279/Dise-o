@@ -9,23 +9,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class TEC_CEDA : Observable
+public class TEC_CEDA
 {
-	private DocumentContext TECTemplate
+    private DocumentContext TECTemplate;
+    public TEC_CEDA(DocumentContext pDocument)
+    {
+        this.TECTemplate = pDocument;
+    }
+	public DocumentContext getDocument()
 	{
-		get;
-		set;
+        return this.TECTemplate;
 	}
-
-	public virtual DocumentContext getDocument()
-	{
-		throw new System.NotImplementedException();
-	}
-
-	public virtual void setDocument(DocumentContext pDocument)
-	{
-		throw new System.NotImplementedException();
-	}
-
 }
 

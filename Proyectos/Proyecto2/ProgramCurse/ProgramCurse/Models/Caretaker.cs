@@ -11,20 +11,21 @@ using System.Text;
 
 public class Caretaker
 {
-	public virtual IEnumerable<DocumentMemento> DocumentMemento
+    private List<DocumentMemento> MementoList;
+
+    public Caretaker()
+    {
+        this.MementoList = new List<DocumentMemento>();
+    }
+
+	public void add(DocumentMemento pMemento)
 	{
-		get;
-		set;
+        this.MementoList.Add(pMemento);
 	}
 
-	public virtual void add(DocumentMemento pMemento)
+	public DocumentMemento getLastMemento()
 	{
-		throw new System.NotImplementedException();
-	}
-
-	public virtual DocumentMemento getLastMemento()
-	{
-		throw new System.NotImplementedException();
+        return this.MementoList.Last<DocumentMemento>();
 	}
 
 }

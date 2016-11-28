@@ -11,23 +11,26 @@ using System.Text;
 
 public abstract class User
 {
-	private string Id
-	{
-		get;
-		set;
-	}
 
-	private string Nombre
-	{
-		get;
-		set;
-	}
+    private string name;
 
-	private List<string> Atestados
-	{
-		get;
-		set;
-	}
+    private string email;
+
+    public User(string pName, string pEmail)
+    {
+        this.name = pName;
+        this.email = pEmail;
+    }
+
+    public string getName()
+    {
+        return this.name;
+    }
+
+    public string getEmail()
+    {
+        return this.email;
+    }
 
 }
 
