@@ -30,9 +30,9 @@ public class DocumentContext : CompositeElement, Prototype<DocumentContext>
         this.validity = pValidity;
     }
 
-    public void add(SectionContext pComponent)
+    public void add(string pId, SectionContext pComponent)
 	{
-        base.add(pComponent);
+        base.add(pId, pComponent);
 	}
 
     public DocumentContext clone()

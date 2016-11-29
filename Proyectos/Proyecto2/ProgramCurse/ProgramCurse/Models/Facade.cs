@@ -11,17 +11,21 @@ using System.Text;
 
 public class Facade
 {
-	private User user
-	{
-		get;
-		set;
-	}
+    private User user;
 
-	public virtual User User
-	{
-		get;
-		set;
-	}
+    public void addComponent(string pParentID, Component pComponent)
+    {
+        user.getDocument().
+    }
 
+    public void removeComponent(string pId)
+    {
+
+    }
+
+    public void editComponent(string pID)
+    {
+
+    }
 }
 

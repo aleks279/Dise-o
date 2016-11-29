@@ -11,7 +11,6 @@ using System.Text;
 
 public abstract class CompositeElement : Component
 {
-    private Dictionary<int, bool> access;
 
     private List<Component> componentList;
 
@@ -20,24 +19,17 @@ public abstract class CompositeElement : Component
         componentList = new List<Component>();
     }
 
-    public void activateAccessLevel(int pLevel)
+	protected void add(string pId, Component pComponent)
 	{
-        access[pLevel] = true;
-	}
-
-	public void deactivateAccessLevel(int pLevel)
-	{
-        access[pLevel] = false;
-    }
-
-    public Dictionary<int, bool> getAccessLevels()
-    {
-        return this.access;
-    }
-
-	protected void add(Component pComponent)
-	{
-        this.componentList.Add(pComponent);
+        Component toRemove = this.getChild(pId);
+        if (!toRemove.isLeaf()) {
+            this.componentList.Add(pComponent);
+        }
+        else
+        {
+            Console.WriteLine("Error agregregando elementos al elemento: " + pId);
+        }
+        
 	}
 
 	public virtual void remove(string pId)
@@ -68,6 +60,11 @@ public abstract class CompositeElement : Component
     public int getChildCount()
     {
         return this.componentList.Count;
+    }
+
+    public override bool isLeaf()
+    {
+        return false;
     }
 }
 

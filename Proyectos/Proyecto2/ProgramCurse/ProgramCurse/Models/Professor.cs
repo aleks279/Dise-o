@@ -11,11 +11,38 @@ using System.Text;
 
 public class Professor : User
 {
-    public List<Curse> ProgramCurses;
+    public Dictionary<string, Curse> curses;
+    public ProgramCurse programCurse;
 
-    public Professor(string pName, string pEmail, List<Curse> pProgramCurses) : base(pName, pEmail)
+    public Professor(string pName, string pEmail, Dictionary<string, Curse> pCurses, ProgramCurse pProgramCurse) : base(pName, pEmail)
     {
-        this.ProgramCurses = pProgramCurses;
+        this.programCurse = pProgramCurse;
+        this.curses = pCurses;
+    }
+
+    public override void addComponent(string pParentID, Component pComponent)
+    {
+        this.programCurse.addComponent(pParentID, pComponent, UserType.Professor);
+    }
+
+    public override void editComponent(string pId, Component pComponentModified)
+    {
+        this.programCurse.editComponent(pId, pComponentModified, UserType.Professor);
+    }
+
+    public override Component getComponent(string pId)
+    {
+        return this.programCurse.getComponent(pId);
+    }
+
+    public override DocumentContext getDocument()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void removeComponent(string pId)
+    {
+        this.programCurse.removeComponent(pId, UserType.Professor);
     }
 }
 

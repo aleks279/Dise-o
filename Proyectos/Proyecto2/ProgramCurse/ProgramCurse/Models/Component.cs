@@ -15,6 +15,8 @@ public abstract class Component
 
     private string Id;
 
+    private Dictionary<int, bool> access;
+
     public Component(string pTitle, string pId)
     {
         this.title = pTitle;
@@ -35,6 +37,23 @@ public abstract class Component
 	{
         this.title = pTitle;
 	}
+
+    public abstract bool isLeaf();
+
+    public void activateAccessLevel(int pLevel)
+    {
+        access[pLevel] = true;
+    }
+
+    public void deactivateAccessLevel(int pLevel)
+    {
+        access[pLevel] = false;
+    }
+
+    public Dictionary<int, bool> getAccessLevels()
+    {
+        return this.access;
+    }
 
 }
 

@@ -9,16 +9,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class TEC_CEDA
+public class TEC_CEDA: DocumentContainer
 {
-    private DocumentContext TECTemplate;
-    public TEC_CEDA(DocumentContext pDocument)
+    public TEC_CEDA(DocumentContext pDocument): base(pDocument)
     {
-        this.TECTemplate = pDocument;
     }
-	public DocumentContext getDocument()
-	{
-        return this.TECTemplate;
-	}
+
+    public override void addComponent(string pParentID, Component pComponent, UserType pType)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void editComponent(string pID, Component pComponentModified, UserType pType)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override Component getComponent(string pId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void removeComponent(string pId, UserType pType)
+    {
+        throw new NotImplementedException();
+    }
 }
 
