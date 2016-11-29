@@ -23,7 +23,12 @@ public class TextLineLeaf : Component
         return this.textContentLine;
 	}
 
-	public virtual void setTextContentLine(string pTextContextLine)
+    public override bool isLeaf()
+    {
+        return true;
+    }
+
+    public virtual void setTextContentLine(string pTextContextLine)
 	{
         this.textContentLine = pTextContextLine;
 	}

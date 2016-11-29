@@ -21,14 +21,14 @@ public class SectionContext : CompositeElement
 
     }
 
-    public void add(SectionContext pComponent)
+    public void add(string pId, SectionContext pComponent)
 	{
-        base.add(pComponent);
+        base.add(pId, pComponent);
 	}
 
-    public void add(TextLineLeaf pComponent)
+    public void add(string pId, TextLineLeaf pComponent)
     {
-        base.add(pComponent);
+        base.add(pId, pComponent);
     }
 
     public override void remove(string pId)

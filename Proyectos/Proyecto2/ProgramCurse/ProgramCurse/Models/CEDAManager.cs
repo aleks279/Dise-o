@@ -17,5 +17,30 @@ public class CEDAManager : User
     {
         this.TEC_CEDA = plantilla;
     }
+
+    public override void addComponent(string pParentID, Component pComponent)
+    {
+        this.TEC_CEDA.addComponent(pParentID, pComponent, UserType.CEDAManager);
+    }
+
+    public override void editComponent(string pID, Component pComponentModified)
+    {
+        this.TEC_CEDA.editComponent(pID, pComponentModified, UserType.CEDAManager);
+    }
+
+    public override Component getComponent(string pId)
+    {
+        return this.TEC_CEDA.getComponent(pId);
+    }
+
+    public override DocumentContext getDocument()
+    {
+        return this.getDocument();
+    }
+
+    public override void removeComponent(string pId)
+    {
+        this.TEC_CEDA.removeComponent(pId, UserType.CEDAManager);
+    }
 }
 

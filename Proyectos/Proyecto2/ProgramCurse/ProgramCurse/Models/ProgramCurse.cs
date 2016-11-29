@@ -9,21 +9,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class ProgramCurse
+public class ProgramCurse: DocumentContainer
 {
     private Curse curse;
-    private DocumentContext document;
 
-    public ProgramCurse(DocumentContext pDocument, Curse pCurse)
+    public ProgramCurse(DocumentContext pDocument, Curse pCurse):base(pDocument)
     {
-        this.document = pDocument;
         this.curse = pCurse;
     }
 
-    public DocumentContext getDocument()
-	{
-        return this.document;
-	}
-    
+    public override void addComponent(string pParentID, Component pComponent, UserType pType)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void editComponent(string pID, Component pComponentModified, UserType pType)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override Component getComponent(string pId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void removeComponent(string pId, UserType pType)
+    {
+        throw new NotImplementedException();
+    }
 }
 

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class CareerPlan
+public class CareerPlan: DocumentContainer
 {
     private string planId;
 
@@ -19,21 +19,13 @@ public class CareerPlan
 
     public DocumentState state;
 
-    private DocumentContext document;
-
-    public CareerPlan(string pPlanId, string pFaculty, string pCareer, DocumentState pState, DocumentContext pDocument)
+    public CareerPlan(string pPlanId, string pFaculty, string pCareer, DocumentState pState, DocumentContext pDocument) : base(pDocument)
     {
         this.planId = pPlanId;
         this.faculty = pFaculty;
         this.career = pCareer;
         this.state = pState;
-        this.document = pDocument;
     }
-
-    public DocumentContext getDocument()
-	{
-		return this.document;
-	}
 
     public void changeState(DocumentState pState)
     {
@@ -53,6 +45,26 @@ public class CareerPlan
     public string getCareer()
     {
         return this.career;
+    }
+
+    public override void addComponent(string pParentID, Component pComponent, UserType pType)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void editComponent(string pID, Component pComponentModified, UserType pType)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void removeComponent(string pId, UserType pType)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override Component getComponent(string pId)
+    {
+        throw new NotImplementedException();
     }
 }
 
