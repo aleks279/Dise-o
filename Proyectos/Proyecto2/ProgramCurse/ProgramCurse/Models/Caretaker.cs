@@ -9,24 +9,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class Caretaker
+namespace ProgramCurse.Models
 {
-    private List<DocumentMemento> MementoList;
-
-    public Caretaker()
+    public class Caretaker
     {
-        this.MementoList = new List<DocumentMemento>();
+        private List<DocumentMemento> MementoList;
+
+        public Caretaker()
+        {
+            this.MementoList = new List<DocumentMemento>();
+        }
+
+        public void add(DocumentMemento pMemento)
+        {
+            this.MementoList.Add(pMemento);
+        }
+
+        public DocumentMemento getLastMemento()
+        {
+            return this.MementoList.Last<DocumentMemento>();
+        }
+
     }
-
-	public void add(DocumentMemento pMemento)
-	{
-        this.MementoList.Add(pMemento);
-	}
-
-	public DocumentMemento getLastMemento()
-	{
-        return this.MementoList.Last<DocumentMemento>();
-	}
-
 }
-

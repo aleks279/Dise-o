@@ -9,11 +9,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class TEC_CEDA: DocumentContainer
+namespace ProgramCurse.Models
 {
-    public TEC_CEDA(DocumentContext pDocument): base(pDocument)
+    public class TEC_CEDA : DocumentContainer
     {
-        
+        public TEC_CEDA(DocumentContext pDocument) : base(pDocument)
+        {
+
+        }
     }
 }
-

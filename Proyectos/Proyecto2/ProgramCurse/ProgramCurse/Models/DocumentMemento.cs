@@ -9,24 +9,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class DocumentMemento
+namespace ProgramCurse.Models
 {
-    private DocumentContext state;
-
-    public DocumentMemento(DocumentContext pState)
+    public class DocumentMemento
     {
-        this.state = pState;
+        private DocumentContext state;
+
+        public DocumentMemento(DocumentContext pState)
+        {
+            this.state = pState;
+        }
+
+        public DocumentContext getState()
+        {
+            return this.state;
+        }
+
+        public void setState(DocumentContext pState)
+        {
+            this.state = pState;
+        }
+
     }
 
-    public DocumentContext getState()
-	{
-        return this.state;
-	}
-
-	public void setState(DocumentContext pState)
-	{
-        this.state = pState;
-	}
-
 }
-

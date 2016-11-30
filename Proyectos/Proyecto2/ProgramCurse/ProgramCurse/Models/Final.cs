@@ -9,16 +9,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class Final : DocumentState
+namespace ProgramCurse.Models
 {
-    private State myState;
-    public Final()
+    public class Final : DocumentState
     {
-        this.myState = State.Final;
+        private State myState;
+        public Final()
+        {
+            this.myState = State.Final;
+        }
+        public State getMyState()
+        {
+            return this.myState;
+        }
     }
-    public State getMyState()
-    {
-        return this.myState;
-    }
-}
 
+}
