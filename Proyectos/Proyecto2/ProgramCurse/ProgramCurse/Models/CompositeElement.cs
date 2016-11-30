@@ -14,47 +14,94 @@ public abstract class CompositeElement : Component
 
     private List<Component> componentList;
 
-    public CompositeElement(string pTitle, string pId, Dictionary<int, bool> pAccess) : base(pTitle, pId)
+    public CompositeElement(string pTitle, string pId, Dictionary<UserType, bool> pAccess) : base(pTitle, pId, pAccess)
     {
         componentList = new List<Component>();
     }
 
-	protected void add(string pId, Component pComponent)
+	public void add(Component pComponent)
 	{
-        Component toRemove = this.getChild(pId);
-        if (!toRemove.isLeaf()) {
-            this.componentList.Add(pComponent);
-        }
-        else
-        {
-            Console.WriteLine("Error agregregando elementos al elemento: " + pId);
-        }
-        
+        this.componentList.Add(pComponent);
 	}
 
 	public virtual void remove(string pId)
 	{
-        Component toRemove = this.getChild(pId);
-        this.componentList.Remove(toRemove);
+        CompositeElement parent = (CompositeElement)this.getParent(pId);
+        Component toDelete = this.getComponent(pId);
+        parent.getChilds().Remove(toDelete);
 	}
 
-	public Component getChild(string pId)
-	{
+    private Component getParent(string pId)
+    {
+        List<Component> componentsTmp = this.getChilds();
+        int maxI = componentsTmp.Count;
         Component result = null;
-        int maxI = this.componentList.Count;
-		for (int i = 0; i < maxI; i++)
+        if (!this.isLeaf())
         {
-            if (this.componentList[i].getId().Equals(pId))
+            result = getParentAux(pId, componentsTmp, maxI);
+            for (int i = 0; i < maxI && result == null; i++)
             {
-                result = this.componentList[i];
+                result = componentsTmp[i];
+                if (!result.isLeaf())
+                {
+                    result = ((CompositeElement)result).getParent(pId);
+                }
             }
         }
         return result;
-	}
+    }
 
-    public Component getChild(int pIndex)
+    private Component getParentAux(string pId, List<Component> pComponents, int pMaxLen)
+    {
+        List<Component> componentsTmp = pComponents;
+        int maxI = pMaxLen;
+        Component result = null;
+        if (componentsTmp.Count > 0) {
+            for (int i = 0; i < maxI; i++)
+            {
+                result = componentsTmp[i];
+                if (result.getId().CompareTo(pId) == 0)
+                {
+                    result = this;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+
+    public override Component getComponent(string pId)
+    {
+        if (pId.CompareTo(this.getId()) == 0)
+        {
+            return this;
+        }
+        else
+        {
+            List<Component> componentsTmp = this.getChilds();
+            int maxI = componentsTmp.Count;
+            Component result = null;
+            for (int i = 0; i < maxI; i++)
+            {
+                result = componentsTmp[i].getComponent(pId);
+                if (result != null)
+                {
+                    break;
+                }
+            }
+            return result;
+        }
+    }
+
+    public Component getComponent(int pIndex)
     {
         return this.componentList.ElementAt<Component>(pIndex);
+    }
+
+    public List<Component> getChilds()
+    {
+        return this.componentList;
     }
 
     public int getChildCount()
@@ -65,6 +112,11 @@ public abstract class CompositeElement : Component
     public override bool isLeaf()
     {
         return false;
+    }
+
+    public void setChilds(List<Component> pChilds)
+    {
+        this.componentList = pChilds;
     }
 }
 

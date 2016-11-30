@@ -13,8 +13,8 @@ public abstract class User
 {
 
     private string name;
-    private DocumentContext document;
     private string email;
+    private DocumentContainer container;
 
     public User(string pName, string pEmail)
     {
@@ -32,14 +32,24 @@ public abstract class User
         return this.email;
     }
 
+    public void setContainer(DocumentContainer pContainer)
+    {
+        this.container = pContainer;
+    }
+
+    public DocumentContainer getContainer()
+    {
+        return this.container;
+    }
+
     public abstract void addComponent(string pParentID, Component pComponent);
 
     public abstract void removeComponent(string pId);
 
-    public abstract void editComponent(string pId, Component pComponentModified);
-
     public abstract Component getComponent(string pId);
 
     public abstract DocumentContext getDocument();
+
+    public abstract override string ToString();
 }
 

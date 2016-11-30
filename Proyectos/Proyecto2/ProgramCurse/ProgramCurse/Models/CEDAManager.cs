@@ -11,26 +11,18 @@ using System.Text;
 
 public class CEDAManager : User
 {
-    public TEC_CEDA TEC_CEDA;
-
-    public CEDAManager(string pName, string pEmail, TEC_CEDA plantilla) : base(pName, pEmail)
+    public CEDAManager(string pName, string pEmail) : base(pName, pEmail)
     {
-        this.TEC_CEDA = plantilla;
     }
 
     public override void addComponent(string pParentID, Component pComponent)
     {
-        this.TEC_CEDA.addComponent(pParentID, pComponent, UserType.CEDAManager);
-    }
-
-    public override void editComponent(string pID, Component pComponentModified)
-    {
-        this.TEC_CEDA.editComponent(pID, pComponentModified, UserType.CEDAManager);
+        base.getContainer().addComponent(pParentID, pComponent, UserType.CEDAManager);
     }
 
     public override Component getComponent(string pId)
     {
-        return this.TEC_CEDA.getComponent(pId);
+        return base.getContainer().getComponent(pId);
     }
 
     public override DocumentContext getDocument()
@@ -40,7 +32,12 @@ public class CEDAManager : User
 
     public override void removeComponent(string pId)
     {
-        this.TEC_CEDA.removeComponent(pId, UserType.CEDAManager);
+        base.getContainer().removeComponent(pId, UserType.CEDAManager);
+    }
+
+    public override string ToString()
+    {
+        return base.getContainer().ToString();
     }
 }
 

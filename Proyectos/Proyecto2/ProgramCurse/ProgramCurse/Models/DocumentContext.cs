@@ -20,19 +20,19 @@ public class DocumentContext : CompositeElement, Prototype<DocumentContext>
 
     private string validity;
 
-    public DocumentContext(string pTitle, string pId, string pValidity) : base(pTitle, pId, new Dictionary<int, bool>
+    public DocumentContext(string pTitle, string pId, string pValidity) : base(pTitle, pId, new Dictionary<UserType, bool>
     {
-        {1, false},
-        {2, false},
-        {3, true}
+        { UserType.Professor, true },
+        { UserType.CurricularManager, true },
+        { UserType.CEDAManager, true }
     })
     {
         this.validity = pValidity;
     }
 
-    public void add(string pId, SectionContext pComponent)
+    public void add(SectionContext pComponent)
 	{
-        base.add(pId, pComponent);
+        base.add(pComponent);
 	}
 
     public DocumentContext clone()
@@ -52,7 +52,7 @@ public class DocumentContext : CompositeElement, Prototype<DocumentContext>
         int maxI = base.getChildCount();
         for (int i = 0; i < maxI; i++)
         {
-            result += (i+1).ToString() + ". " + base.getChild(i).ToString() + "\n";
+            result += (i+1).ToString() + ". " + base.getComponent(i).ToString() + "\n";
         }
         return result + "}";
     }

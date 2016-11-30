@@ -12,36 +12,34 @@ using System.Text;
 public class CurricularManager : User
 {
 
-    public CareerPlan planCarrera;
-
-    public CurricularManager(string pName, string pEmail, CareerPlan pPlan) : base(pName, pEmail)
+    public CurricularManager(string pName, string pEmail) : base(pName, pEmail)
     {
-        this.planCarrera = pPlan;
+        
     }
 
     public override void addComponent(string pParentID, Component pComponent)
     {
-        this.planCarrera.addComponent(pParentID, pComponent, UserType.CurricularManager);
-    }
-
-    public override void editComponent(string pID, Component pComponentModified)
-    {
-        this.planCarrera.editComponent(pID, pComponentModified, UserType.CurricularManager);
+        base.getContainer().addComponent(pParentID, pComponent, UserType.CurricularManager);
     }
 
     public override DocumentContext getDocument()
     {
-        return this.planCarrera.getDocument();
+        return base.getContainer().getDocument();
     }
 
     public override void removeComponent(string pId)
     {
-        this.planCarrera.removeComponent(pId, UserType.CurricularManager);
+        base.getContainer().removeComponent(pId, UserType.CurricularManager);
     }
 
     public override Component getComponent(string pId)
     {
-        return this.planCarrera.getComponent(pId);
+        return base.getContainer().getComponent(pId);
+    }
+
+    public override string ToString()
+    {
+        return base.getContainer().ToString();
     }
 }
 

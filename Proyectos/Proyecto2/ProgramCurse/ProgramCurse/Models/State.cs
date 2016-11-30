@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
     public enum State
     {
-        Draft,
-        Final,
-        New
+        Draft = 1,
+        Final = 2,
+        New = 3
     }

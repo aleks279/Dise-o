@@ -18,24 +18,5 @@ public class ProgramCurse: DocumentContainer
         this.curse = pCurse;
     }
 
-    public override void addComponent(string pParentID, Component pComponent, UserType pType)
-    {
-        throw new NotImplementedException();
-    }
-
-    public override void editComponent(string pID, Component pComponentModified, UserType pType)
-    {
-        throw new NotImplementedException();
-    }
-
-    public override Component getComponent(string pId)
-    {
-        throw new NotImplementedException();
-    }
-
-    public override void removeComponent(string pId, UserType pType)
-    {
-        throw new NotImplementedException();
-    }
 }
 
