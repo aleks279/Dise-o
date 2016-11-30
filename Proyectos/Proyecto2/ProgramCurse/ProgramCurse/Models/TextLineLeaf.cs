@@ -13,12 +13,29 @@ public class TextLineLeaf : Component
 {
     private string textContentLine;
 
-    public TextLineLeaf(string pTextContextLine, string pTitle, string pId):base(pTitle, pId)
+    public TextLineLeaf(string pTextContextLine, string pTitle, string pId):base(pTitle, pId, new Dictionary<UserType, bool>
+    {
+        { UserType.Professor, true },
+        { UserType.CurricularManager, true },
+        { UserType.CEDAManager, true }
+    })
     {
         this.textContentLine = pTextContextLine;
     }
 
-	public string getTextContentLine()
+    public override Component getComponent(string pId)
+    {
+        if(this.getId().CompareTo(pId) == 0)
+        {
+            return this;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public string getTextContentLine()
 	{
         return this.textContentLine;
 	}

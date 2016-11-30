@@ -15,12 +15,13 @@ public abstract class Component
 
     private string Id;
 
-    private Dictionary<int, bool> access;
+    private Dictionary<UserType, bool> access;
 
-    public Component(string pTitle, string pId)
+    public Component(string pTitle, string pId, Dictionary<UserType, bool> pAccess)
     {
         this.title = pTitle;
         this.Id = pId;
+        this.access = pAccess;
     }
 
 	public virtual string getTitle()
@@ -40,19 +41,26 @@ public abstract class Component
 
     public abstract bool isLeaf();
 
-    public void activateAccessLevel(int pLevel)
+    public abstract Component getComponent(string pId);
+
+    public void activateAccessLevel(UserType pLevel)
     {
         access[pLevel] = true;
     }
 
-    public void deactivateAccessLevel(int pLevel)
+    public void deactivateAccessLevel(UserType pLevel)
     {
         access[pLevel] = false;
     }
 
-    public Dictionary<int, bool> getAccessLevels()
+    public Dictionary<UserType, bool> getAccessLevels()
     {
         return this.access;
+    }
+
+    public void setAccessLevels(Dictionary<UserType, bool> pAccessLevel)
+    {
+        this.access = pAccessLevel;
     }
 
 }

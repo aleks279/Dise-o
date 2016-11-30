@@ -25,11 +25,6 @@ public class Professor : User
         this.programCurse.addComponent(pParentID, pComponent, UserType.Professor);
     }
 
-    public override void editComponent(string pId, Component pComponentModified)
-    {
-        this.programCurse.editComponent(pId, pComponentModified, UserType.Professor);
-    }
-
     public override Component getComponent(string pId)
     {
         return this.programCurse.getComponent(pId);
@@ -43,6 +38,11 @@ public class Professor : User
     public override void removeComponent(string pId)
     {
         this.programCurse.removeComponent(pId, UserType.Professor);
+    }
+
+    public override string ToString()
+    {
+        return this.programCurse.ToString();
     }
 }
 

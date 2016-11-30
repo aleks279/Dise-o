@@ -11,25 +11,20 @@ using System.Text;
 
 public class SectionContext : CompositeElement
 {
-    public SectionContext(string pTitle, string pId) : base(pTitle, pId, new Dictionary<int, bool>
+    public SectionContext(string pTitle, string pId) : base(pTitle, pId, new Dictionary<UserType, bool>
     {
-        {1, false},
-        {2, true},
-        {3, true}
+        { UserType.Professor, true },
+        { UserType.CurricularManager, true },
+        { UserType.CEDAManager, true }
     })
     {
 
     }
 
-    public void add(string pId, SectionContext pComponent)
+    public void add(SectionContext pComponent)
 	{
-        base.add(pId, pComponent);
+        base.add(pComponent);
 	}
-
-    public void add(string pId, TextLineLeaf pComponent)
-    {
-        base.add(pId, pComponent);
-    }
 
     public override void remove(string pId)
     {
@@ -42,7 +37,7 @@ public class SectionContext : CompositeElement
         int maxI = base.getChildCount();
         for (int i = 0; i < maxI; i++)
         {
-            result += (i+1).ToString() + ". " + base.getChild(i).ToString() + "\n";
+            result += (i+1).ToString() + ". " + base.getComponent(i).ToString() + "\n";
         }
         return result + "}";
     }

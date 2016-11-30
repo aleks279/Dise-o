@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
     public enum UserType
     {
-        Professor,
-        CurricularManager,
-        CEDAManager
+        Professor = 1,
+        CurricularManager = 2,
+        CEDAManager = 3
 }
