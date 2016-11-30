@@ -9,59 +9,62 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public abstract class Component
+namespace ProgramCurse.Models
 {
-    private string title;
-
-    private string Id;
-
-    private Dictionary<UserType, bool> access;
-
-    public Component(string pTitle, string pId, Dictionary<UserType, bool> pAccess)
+    public abstract class Component
     {
-        this.title = pTitle;
-        this.Id = pId;
-        this.access = pAccess;
-    }
+        private string title;
 
-	public virtual string getTitle()
-	{
-        return this.title;
-	}
+        private string Id;
 
-    public virtual string getId()
-    {
-        return this.Id;
-    }
+        private Dictionary<UserType, bool> access;
 
-    public virtual void setTitle(string pTitle)
-	{
-        this.title = pTitle;
-	}
+        public Component(string pTitle, string pId, Dictionary<UserType, bool> pAccess)
+        {
+            this.title = pTitle;
+            this.Id = pId;
+            this.access = pAccess;
+        }
 
-    public abstract bool isLeaf();
+        public virtual string getTitle()
+        {
+            return this.title;
+        }
 
-    public abstract Component getComponent(string pId);
+        public virtual string getId()
+        {
+            return this.Id;
+        }
 
-    public void activateAccessLevel(UserType pLevel)
-    {
-        access[pLevel] = true;
-    }
+        public virtual void setTitle(string pTitle)
+        {
+            this.title = pTitle;
+        }
 
-    public void deactivateAccessLevel(UserType pLevel)
-    {
-        access[pLevel] = false;
-    }
+        public abstract bool isLeaf();
 
-    public Dictionary<UserType, bool> getAccessLevels()
-    {
-        return this.access;
-    }
+        public abstract Component getComponent(string pId);
 
-    public void setAccessLevels(Dictionary<UserType, bool> pAccessLevel)
-    {
-        this.access = pAccessLevel;
+        public void activateAccessLevel(UserType pLevel)
+        {
+            access[pLevel] = true;
+        }
+
+        public void deactivateAccessLevel(UserType pLevel)
+        {
+            access[pLevel] = false;
+        }
+
+        public Dictionary<UserType, bool> getAccessLevels()
+        {
+            return this.access;
+        }
+
+        public void setAccessLevels(Dictionary<UserType, bool> pAccessLevel)
+        {
+            this.access = pAccessLevel;
+        }
+
     }
 
 }
-

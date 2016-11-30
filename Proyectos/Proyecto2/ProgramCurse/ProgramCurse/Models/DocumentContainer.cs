@@ -4,80 +4,83 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public abstract class DocumentContainer
+namespace ProgramCurse.Models
 {
-    private DocumentContext document;
-
-    public DocumentContainer(DocumentContext pDocument)
+    public abstract class DocumentContainer
     {
-        this.document = pDocument;
-    }
+        private DocumentContext document;
 
-    public Component getComponent(string pId)
-    {
-        return this.document.getComponent(pId);
-    }
-
-    public void activateLevel(UserType pLevel, string pComponentId)
-    {
-        Component toActivate = this.document.getComponent(pComponentId);
-        toActivate.activateAccessLevel(pLevel);
-    }
-
-    public void deactivateLevel(UserType pLevel, string pComponentId)
-    {
-        Component toDeactivate = this.document.getComponent(pComponentId);
-        toDeactivate.activateAccessLevel(pLevel);
-    }
-
-    public void addComponent(string pParentID, Component pComponent, UserType pType)
-    {
-        if (this.document.getAccessLevels()[pType])
+        public DocumentContainer(DocumentContext pDocument)
         {
-            Component parentComponent = this.document.getComponent(pParentID);
-            try
+            this.document = pDocument;
+        }
+
+        public Component getComponent(string pId)
+        {
+            return this.document.getComponent(pId);
+        }
+
+        public void activateLevel(UserType pLevel, string pComponentId)
+        {
+            Component toActivate = this.document.getComponent(pComponentId);
+            toActivate.activateAccessLevel(pLevel);
+        }
+
+        public void deactivateLevel(UserType pLevel, string pComponentId)
+        {
+            Component toDeactivate = this.document.getComponent(pComponentId);
+            toDeactivate.activateAccessLevel(pLevel);
+        }
+
+        public void addComponent(string pParentID, Component pComponent, UserType pType)
+        {
+            if (this.document.getAccessLevels()[pType])
             {
-                if (!parentComponent.isLeaf())
+                Component parentComponent = this.document.getComponent(pParentID);
+                try
                 {
-                    CompositeElement toAdd = (CompositeElement)parentComponent;
-                    toAdd.add(pComponent);
+                    if (!parentComponent.isLeaf())
+                    {
+                        CompositeElement toAdd = (CompositeElement)parentComponent;
+                        toAdd.add(pComponent);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error agregregando elementos al componente: " + parentComponent.getId());
+                    }
                 }
-                else
+                catch (NullReferenceException err)
                 {
-                    Console.WriteLine("Error agregregando elementos al componente: " + parentComponent.getId());
+                    Console.WriteLine("Error componente parent no existe");
                 }
             }
-            catch(NullReferenceException err)
+            else
             {
-                Console.WriteLine("Error componente parent no existe");
+                Console.WriteLine("No tiene permisos para modificar este componente");
+            }
+
+        }
+
+        public void removeComponent(string pId, UserType pType)
+        {
+            if (this.document.getAccessLevels()[pType])
+            {
+                this.document.remove(pId);
+            }
+            else
+            {
+                Console.WriteLine("No tiene permisos para modificar este componente");
             }
         }
-        else
+
+        public DocumentContext getDocument()
         {
-            Console.WriteLine("No tiene permisos para modificar este componente");
+            return this.document;
         }
 
-    }
-
-    public void removeComponent(string pId, UserType pType)
-    {
-        if (this.document.getAccessLevels()[pType])
+        public override string ToString()
         {
-            this.document.remove(pId);
+            return this.document.ToString();
         }
-        else
-        {
-            Console.WriteLine("No tiene permisos para modificar este componente");
-        }
-    }
-
-    public DocumentContext getDocument()
-    {
-        return this.document;
-    }
-
-    public override string ToString()
-    {
-        return this.document.ToString();
     }
 }

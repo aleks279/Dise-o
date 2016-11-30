@@ -9,47 +9,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public abstract class User
+namespace ProgramCurse.Models
 {
-
-    private string name;
-    private string email;
-    private DocumentContainer container;
-
-    public User(string pName, string pEmail)
+    public abstract class User
     {
-        this.name = pName;
-        this.email = pEmail;
+
+        private string name;
+        private string email;
+        private DocumentContainer container;
+
+        public User(string pName, string pEmail)
+        {
+            this.name = pName;
+            this.email = pEmail;
+        }
+
+        public string getName()
+        {
+            return this.name;
+        }
+
+        public string getEmail()
+        {
+            return this.email;
+        }
+
+        public void setContainer(DocumentContainer pContainer)
+        {
+            this.container = pContainer;
+        }
+
+        public DocumentContainer getContainer()
+        {
+            return this.container;
+        }
+
+        public abstract void addComponent(string pParentID, Component pComponent);
+
+        public abstract void removeComponent(string pId);
+
+        public abstract Component getComponent(string pId);
+
+        public abstract DocumentContext getDocument();
+
+        public abstract override string ToString();
     }
 
-    public string getName()
-    {
-        return this.name;
-    }
-
-    public string getEmail()
-    {
-        return this.email;
-    }
-
-    public void setContainer(DocumentContainer pContainer)
-    {
-        this.container = pContainer;
-    }
-
-    public DocumentContainer getContainer()
-    {
-        return this.container;
-    }
-
-    public abstract void addComponent(string pParentID, Component pComponent);
-
-    public abstract void removeComponent(string pId);
-
-    public abstract Component getComponent(string pId);
-
-    public abstract DocumentContext getDocument();
-
-    public abstract override string ToString();
 }
-

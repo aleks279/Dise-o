@@ -9,16 +9,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class New : DocumentState
+namespace ProgramCurse.Models
 {
-    private State myState;
-    public New()
+    public class New : DocumentState
     {
-        this.myState = State.New;
+        private State myState;
+        public New()
+        {
+            this.myState = State.New;
+        }
+        public State getMyState()
+        {
+            return this.myState;
+        }
     }
-    public State getMyState()
-    {
-        return this.myState;
-    }
-}
 
+}

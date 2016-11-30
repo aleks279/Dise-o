@@ -9,58 +9,61 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class FacadeProgramCurse
+namespace ProgramCurse.Models
 {
-    private User user;
-
-    public FacadeProgramCurse(User pUser)
+    public class FacadeProgramCurse
     {
-        this.user = pUser;
-    }
+        private User user;
 
-    public void addComponent(string pParentID, Component pComponent)
-    {
-        user.addComponent(pParentID, pComponent);
-    }
-
-    public void removeComponent(string pId)
-    {
-        user.removeComponent(pId);
-    }
-
-    public void editComponentContent(string pId, string pContent)
-    {
-        Component toModifyCodigoCurso = user.getComponent(pId);
-        if (toModifyCodigoCurso.isLeaf())
+        public FacadeProgramCurse(User pUser)
         {
-            ((TextLineLeaf)toModifyCodigoCurso).setTextContentLine(pContent);
+            this.user = pUser;
+        }
+
+        public void addComponent(string pParentID, Component pComponent)
+        {
+            user.addComponent(pParentID, pComponent);
+        }
+
+        public void removeComponent(string pId)
+        {
+            user.removeComponent(pId);
+        }
+
+        public void editComponentContent(string pId, string pContent)
+        {
+            Component toModifyCodigoCurso = user.getComponent(pId);
+            if (toModifyCodigoCurso.isLeaf())
+            {
+                ((TextLineLeaf)toModifyCodigoCurso).setTextContentLine(pContent);
+            }
+        }
+
+        public void editComponentTitle(string pId, string pContent)
+        {
+            Component toModifyCodigoCurso = user.getComponent(pId);
+            if (!toModifyCodigoCurso.isLeaf())
+            {
+                toModifyCodigoCurso.setTitle(pContent);
+            }
+        }
+
+        public void activateComponentAccessLevel(string pComponentId, UserType pType)
+        {
+            Component toModify = user.getComponent(pComponentId);
+            toModify.activateAccessLevel(pType);
+        }
+
+        public void deactivateComponentAccessLevel(string pComponentId, UserType pType)
+        {
+            Component toModify = user.getComponent(pComponentId);
+            toModify.deactivateAccessLevel(pType);
+        }
+
+        public override string ToString()
+        {
+            return this.user.ToString();
         }
     }
 
-    public void editComponentTitle(string pId, string pContent)
-    {
-        Component toModifyCodigoCurso = user.getComponent(pId);
-        if (!toModifyCodigoCurso.isLeaf())
-        {
-            toModifyCodigoCurso.setTitle(pContent);
-        }
-    }
-
-    public void activateComponentAccessLevel(string pComponentId, UserType pType)
-    {
-        Component toModify = user.getComponent(pComponentId);
-        toModify.activateAccessLevel(pType);
-    }
-
-    public void deactivateComponentAccessLevel(string pComponentId, UserType pType)
-    {
-        Component toModify = user.getComponent(pComponentId);
-        toModify.deactivateAccessLevel(pType);
-    }
-
-    public override string ToString()
-    {
-        return this.user.ToString();
-    }
 }
-

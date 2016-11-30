@@ -9,9 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public interface Prototype<T> 
+namespace ProgramCurse.Models
 {
-	T clone();
+    public interface Prototype<T>
+    {
+        T clone();
 
+    }
 }
-

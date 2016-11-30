@@ -9,9 +9,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public interface DocumentState 
+namespace ProgramCurse.Models
 {
-    State getMyState();
+    public interface DocumentState
+    {
+        State getMyState();
+
+    }
 
 }
-
