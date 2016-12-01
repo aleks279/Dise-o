@@ -9,45 +9,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ProgramCurse.Models
+public class CareerPlan: DocumentContainer
 {
-    public class CareerPlan : DocumentContainer
+    private string planId;
+
+    private string faculty;
+
+    private string career;
+
+    public DocumentState state;
+
+    public CareerPlan(string pPlanId, string pFaculty, string pCareer, DocumentState pState, DocumentContext pDocument) : base(pDocument)
     {
-        private string planId;
+        this.planId = pPlanId;
+        this.faculty = pFaculty;
+        this.career = pCareer;
+        this.state = pState;
+    }
 
-        private string faculty;
+    public void changeState(DocumentState pState)
+    {
+        this.state = pState;
+    }
 
-        private string career;
+    public string getPlanID()
+    {
+        return this.planId;
+    }
 
-        public DocumentState state;
+    public string getFaculty()
+    {
+        return this.faculty;
+    }
 
-        public CareerPlan(string pPlanId, string pFaculty, string pCareer, DocumentState pState, DocumentContext pDocument) : base(pDocument)
-        {
-            this.planId = pPlanId;
-            this.faculty = pFaculty;
-            this.career = pCareer;
-            this.state = pState;
-        }
-
-        public void changeState(DocumentState pState)
-        {
-            this.state = pState;
-        }
-
-        public string getPlanID()
-        {
-            return this.planId;
-        }
-
-        public string getFaculty()
-        {
-            return this.faculty;
-        }
-
-        public string getCareer()
-        {
-            return this.career;
-        }
+    public string getCareer()
+    {
+        return this.career;
     }
 }
 

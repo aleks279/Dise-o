@@ -9,41 +9,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ProgramCurse.Models
+[Serializable()]
+public class SectionContext : CompositeElement
 {
-    public class SectionContext : CompositeElement
-    {
-        public SectionContext(string pTitle, string pId) : base(pTitle, pId, new Dictionary<UserType, bool>
+    public SectionContext(string pTitle, string pId) : base(pTitle, pId, new Dictionary<UserType, bool>
     {
         { UserType.Professor, true },
         { UserType.CurricularManager, true },
         { UserType.CEDAManager, true }
     })
-        {
-
-        }
-
-        public void add(SectionContext pComponent)
-        {
-            base.add(pComponent);
-        }
-
-        public override void remove(string pId)
-        {
-            base.remove(pId);
-        }
-
-        public override string ToString()
-        {
-            string result = this.getTitle() + ": {\n";
-            int maxI = base.getChildCount();
-            for (int i = 0; i < maxI; i++)
-            {
-                result += (i + 1).ToString() + ". " + base.getComponent(i).ToString() + "\n";
-            }
-            return result + "}";
-        }
+    {
 
     }
 
+    public void add(SectionContext pComponent)
+	{
+        base.add(pComponent);
+	}
+
+    public override void remove(string pId)
+    {
+        base.remove(pId);
+    }
+
+    public override string ToString()
+    {
+        string result = this.getTitle() + ": {\n";
+        int maxI = base.getChildCount();
+        for (int i = 0; i < maxI; i++)
+        {
+            result += (i+1).ToString() + ". " + base.getComponent(i).ToString() + "\n";
+        }
+        return result + "}";
+    }
+
 }
+

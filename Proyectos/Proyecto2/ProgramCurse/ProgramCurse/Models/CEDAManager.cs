@@ -9,38 +9,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ProgramCurse.Models
+public class CEDAManager : User
 {
-    public class CEDAManager : User
+    public CEDAManager(string pName, string pEmail) : base(pName, pEmail)
     {
-        public CEDAManager(string pName, string pEmail) : base(pName, pEmail)
-        {
-        }
-
-        public override void addComponent(string pParentID, Component pComponent)
-        {
-            base.getContainer().addComponent(pParentID, pComponent, UserType.CEDAManager);
-        }
-
-        public override Component getComponent(string pId)
-        {
-            return base.getContainer().getComponent(pId);
-        }
-
-        public override DocumentContext getDocument()
-        {
-            return this.getDocument();
-        }
-
-        public override void removeComponent(string pId)
-        {
-            base.getContainer().removeComponent(pId, UserType.CEDAManager);
-        }
-
-        public override string ToString()
-        {
-            return base.getContainer().ToString();
-        }
     }
 
+    public override void addComponent(string pParentID, Component pComponent)
+    {
+        base.getContainer().addComponent(pParentID, pComponent, UserType.CEDAManager);
+    }
+
+    public override Component getComponent(string pId)
+    {
+        return base.getContainer().getComponent(pId);
+    }
+
+    public override DocumentContext getDocument()
+    {
+        return this.getDocument();
+    }
+
+    public override void removeComponent(string pId)
+    {
+        base.getContainer().removeComponent(pId, UserType.CEDAManager);
+    }
+
+    public override string ToString()
+    {
+        return base.getContainer().ToString();
+    }
 }
+
