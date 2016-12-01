@@ -20,3 +20,6 @@ C:\Users\JoseEnriqueAlvarado\Documents\GitHub\Dise-o\Proyectos\Proyecto1\Proyect
 C:\Users\JoseEnriqueAlvarado\Documents\GitHub\Dise-o\Proyectos\Proyecto1\Proyecto1\Proyecto1\obj\Debug\Proyecto1.Properties.Resources.resources
 C:\Users\JoseEnriqueAlvarado\Documents\GitHub\Dise-o\Proyectos\Proyecto1\Proyecto1\Proyecto1\obj\Debug\Proyecto1.View.EncryptDecryptGUI.resources
 C:\Users\JoseEnriqueAlvarado\Documents\GitHub\Dise-o\Proyectos\Proyecto1\Proyecto1\Proyecto1\obj\Debug\Proyecto1.csproj.GenerateResource.Cache
+C:\Users\JoseEnriqueAlvarado\Desktop\Diseno\Dise-o\Proyectos\Proyecto1\Proyecto1\Proyecto1\bin\Debug\Proyecto1.exe.config
+C:\Users\JoseEnriqueAlvarado\Desktop\Diseno\Dise-o\Proyectos\Proyecto1\Proyecto1\Proyecto1\obj\Debug\Proyecto1.exe
+C:\Users\JoseEnriqueAlvarado\Desktop\Diseno\Dise-o\Proyectos\Proyecto1\Proyecto1\Proyecto1\obj\Debug\Proyecto1.pdb
