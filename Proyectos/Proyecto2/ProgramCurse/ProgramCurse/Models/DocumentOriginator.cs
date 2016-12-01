@@ -9,23 +9,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ProgramCurse.Models
+public class DocumentOriginator
 {
-    public class DocumentOriginator
+    private DocumentMemento state;
+
+    public DocumentOriginator(DocumentMemento pMementoI)
     {
-        private DocumentMemento state;
-
-        public DocumentMemento createMemento()
-        {
-            DocumentContext mementoState = state.getState();
-            return new DocumentMemento(mementoState.clone());
-        }
-
-        public void setMemento(DocumentMemento pMemento)
-        {
-            this.state = pMemento;
-        }
-
+        this.state = pMementoI;
     }
 
+	public DocumentMemento createMemento()
+	{
+        DocumentContext mementoState = state.getState();
+        return new DocumentMemento(mementoState.clone());
+	}
+
+	public void setMemento(DocumentMemento pMemento)
+	{
+        this.state = pMemento;
+	}
+
 }
+

@@ -9,53 +9,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ProgramCurse.Models
+[Serializable()]
+public class TextLineLeaf : Component
 {
-    public class TextLineLeaf : Component
-    {
-        private string textContentLine;
+    private string textContentLine;
 
-        public TextLineLeaf(string pTextContextLine, string pTitle, string pId) : base(pTitle, pId, new Dictionary<UserType, bool>
+    public TextLineLeaf(string pTextContextLine, string pTitle, string pId):base(pTitle, pId, new Dictionary<UserType, bool>
     {
         { UserType.Professor, true },
         { UserType.CurricularManager, true },
         { UserType.CEDAManager, true }
     })
-        {
-            this.textContentLine = pTextContextLine;
-        }
+    {
+        this.textContentLine = pTextContextLine;
+    }
 
-        public override Component getComponent(string pId)
+    public override Component getComponent(string pId)
+    {
+        if(this.getId().CompareTo(pId) == 0)
         {
-            if (this.getId().CompareTo(pId) == 0)
-            {
-                return this;
-            }
-            else
-            {
-                return null;
-            }
+            return this;
         }
-
-        public string getTextContentLine()
+        else
         {
-            return this.textContentLine;
-        }
-
-        public override bool isLeaf()
-        {
-            return true;
-        }
-
-        public virtual void setTextContentLine(string pTextContextLine)
-        {
-            this.textContentLine = pTextContextLine;
-        }
-
-        public override string ToString()
-        {
-            return base.getTitle() + " " + this.getTextContentLine();
+            return null;
         }
     }
 
+    public string getTextContentLine()
+	{
+        return this.textContentLine;
+	}
+
+    public override bool isLeaf()
+    {
+        return true;
+    }
+
+    public virtual void setTextContentLine(string pTextContextLine)
+	{
+        this.textContentLine = pTextContextLine;
+	}
+    
+    public override string ToString()
+    {
+        return base.getTitle() + " " + this.getTextContentLine();
+    }
 }
+

@@ -9,17 +9,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ProgramCurse.Models
+public class ProgramCurse: DocumentContainer
 {
-    public class ProgramCurse : DocumentContainer
+    private Curse curse;
+
+    public ProgramCurse(DocumentContext pDocument, Curse pCurse):base(pDocument)
     {
-        private Curse curse;
-
-        public ProgramCurse(DocumentContext pDocument, Curse pCurse) : base(pDocument)
-        {
-            this.curse = pCurse;
-        }
-
+        this.curse = pCurse;
     }
 
 }
+

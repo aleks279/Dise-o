@@ -9,118 +9,116 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ProgramCurse.Models
+[Serializable()]
+public abstract class CompositeElement : Component
 {
-    public abstract class CompositeElement : Component
+
+    private List<Component> componentList;
+
+    public CompositeElement(string pTitle, string pId, Dictionary<UserType, bool> pAccess) : base(pTitle, pId, pAccess)
     {
+        componentList = new List<Component>();
+    }
 
-        private List<Component> componentList;
+	public void add(Component pComponent)
+	{
+        this.componentList.Add(pComponent);
+	}
 
-        public CompositeElement(string pTitle, string pId, Dictionary<UserType, bool> pAccess) : base(pTitle, pId, pAccess)
+	public virtual void remove(string pId)
+	{
+        CompositeElement parent = (CompositeElement)this.getParent(pId);
+        Component toDelete = this.getComponent(pId);
+        parent.getChilds().Remove(toDelete);
+	}
+
+    private Component getParent(string pId)
+    {
+        List<Component> componentsTmp = this.getChilds();
+        int maxI = componentsTmp.Count;
+        Component result = null;
+        if (!this.isLeaf())
         {
-            componentList = new List<Component>();
+            result = getParentAux(pId, componentsTmp, maxI);
+            for (int i = 0; i < maxI && result == null; i++)
+            {
+                result = componentsTmp[i];
+                if (!result.isLeaf())
+                {
+                    result = ((CompositeElement)result).getParent(pId);
+                }
+            }
         }
+        return result;
+    }
 
-        public void add(Component pComponent)
+    private Component getParentAux(string pId, List<Component> pComponents, int pMaxLen)
+    {
+        List<Component> componentsTmp = pComponents;
+        int maxI = pMaxLen;
+        Component result = null;
+        if (componentsTmp.Count > 0) {
+            for (int i = 0; i < maxI; i++)
+            {
+                result = componentsTmp[i];
+                if (result.getId().CompareTo(pId) == 0)
+                {
+                    result = this;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+
+    public override Component getComponent(string pId)
+    {
+        if (pId.CompareTo(this.getId()) == 0)
         {
-            this.componentList.Add(pComponent);
+            return this;
         }
-
-        public virtual void remove(string pId)
-        {
-            CompositeElement parent = (CompositeElement)this.getParent(pId);
-            Component toDelete = this.getComponent(pId);
-            parent.getChilds().Remove(toDelete);
-        }
-
-        private Component getParent(string pId)
+        else
         {
             List<Component> componentsTmp = this.getChilds();
             int maxI = componentsTmp.Count;
             Component result = null;
-            if (!this.isLeaf())
+            for (int i = 0; i < maxI; i++)
             {
-                result = getParentAux(pId, componentsTmp, maxI);
-                for (int i = 0; i < maxI && result == null; i++)
+                result = componentsTmp[i].getComponent(pId);
+                if (result != null)
                 {
-                    result = componentsTmp[i];
-                    if (!result.isLeaf())
-                    {
-                        result = ((CompositeElement)result).getParent(pId);
-                    }
+                    break;
                 }
             }
             return result;
-        }
-
-        private Component getParentAux(string pId, List<Component> pComponents, int pMaxLen)
-        {
-            List<Component> componentsTmp = pComponents;
-            int maxI = pMaxLen;
-            Component result = null;
-            if (componentsTmp.Count > 0)
-            {
-                for (int i = 0; i < maxI; i++)
-                {
-                    result = componentsTmp[i];
-                    if (result.getId().CompareTo(pId) == 0)
-                    {
-                        result = this;
-                        break;
-                    }
-                }
-            }
-            return result;
-        }
-
-
-        public override Component getComponent(string pId)
-        {
-            if (pId.CompareTo(this.getId()) == 0)
-            {
-                return this;
-            }
-            else
-            {
-                List<Component> componentsTmp = this.getChilds();
-                int maxI = componentsTmp.Count;
-                Component result = null;
-                for (int i = 0; i < maxI; i++)
-                {
-                    result = componentsTmp[i].getComponent(pId);
-                    if (result != null)
-                    {
-                        break;
-                    }
-                }
-                return result;
-            }
-        }
-
-        public Component getComponent(int pIndex)
-        {
-            return this.componentList.ElementAt<Component>(pIndex);
-        }
-
-        public List<Component> getChilds()
-        {
-            return this.componentList;
-        }
-
-        public int getChildCount()
-        {
-            return this.componentList.Count;
-        }
-
-        public override bool isLeaf()
-        {
-            return false;
-        }
-
-        public void setChilds(List<Component> pChilds)
-        {
-            this.componentList = pChilds;
         }
     }
 
+    public Component getComponent(int pIndex)
+    {
+        return this.componentList.ElementAt<Component>(pIndex);
+    }
+
+    public List<Component> getChilds()
+    {
+        return this.componentList;
+    }
+
+    public int getChildCount()
+    {
+        return this.componentList.Count;
+    }
+
+    public override bool isLeaf()
+    {
+        return false;
+    }
+
+    public void setChilds(List<Component> pChilds)
+    {
+        this.componentList = pChilds;
+    }
+
 }
+

@@ -12,52 +12,47 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace ProgramCurse.Models
+[Serializable()]
+public class DocumentContext : CompositeElement, Prototype<DocumentContext>
 {
-    public class DocumentContext : CompositeElement, Prototype<DocumentContext>
+    private string validity;
+
+    public DocumentContext(string pTitle, string pId, string pValidity) : base(pTitle, pId, new Dictionary<UserType, bool>
     {
-
-        private DocumentOriginator DocumentOriginator;
-
-        private string validity;
-
-        public DocumentContext(string pTitle, string pId, string pValidity) : base(pTitle, pId, new Dictionary<UserType, bool>
-    {
-        { UserType.Professor, true },
+        { UserType.Professor, false },
         { UserType.CurricularManager, true },
         { UserType.CEDAManager, true }
     })
-        {
-            this.validity = pValidity;
-        }
-
-        public void add(SectionContext pComponent)
-        {
-            base.add(pComponent);
-        }
-
-        public DocumentContext clone()
-        {
-            using (Stream objectStream = new MemoryStream())
-            {
-                IFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(objectStream, this);
-                objectStream.Seek(0, SeekOrigin.Begin);
-                return (DocumentContext)formatter.Deserialize(objectStream);
-            }
-        }
-
-        public override string ToString()
-        {
-            string result = this.getTitle() + ":{\n";
-            int maxI = base.getChildCount();
-            for (int i = 0; i < maxI; i++)
-            {
-                result += (i + 1).ToString() + ". " + base.getComponent(i).ToString() + "\n";
-            }
-            return result + "}";
-        }
-
+    {
+        this.validity = pValidity;
     }
 
+    public void add(SectionContext pComponent)
+	{
+        base.add(pComponent);
+	}
+
+    public DocumentContext clone()
+    {
+        IFormatter formatter = new BinaryFormatter();
+        Stream stream = new MemoryStream();
+        using (stream)
+        {
+            formatter.Serialize(stream, this);
+            stream.Seek(0, SeekOrigin.Begin);
+            return (DocumentContext)formatter.Deserialize(stream);
+        }
+    }
+
+    public override string ToString()
+    {
+        string result = this.getTitle() + ":{\n";
+        int maxI = base.getChildCount();
+        for (int i = 0; i < maxI; i++)
+        {
+            result += (i+1).ToString() + ". " + base.getComponent(i).ToString() + "\n";
+        }
+        return result + "}";
+    }
 }
+

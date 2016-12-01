@@ -9,43 +9,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ProgramCurse.Models
+public class Professor : User
 {
-    public class Professor : User
+    public Dictionary<string, Curse> curses;
+    public ProgramCurse programCurse;
+
+    public Professor(string pName, string pEmail, Dictionary<string, Curse> pCurses, ProgramCurse pProgramCurse) : base(pName, pEmail)
     {
-        public Dictionary<string, Curse> curses;
-        public ProgramCurse programCurse;
-
-        public Professor(string pName, string pEmail, Dictionary<string, Curse> pCurses, ProgramCurse pProgramCurse) : base(pName, pEmail)
-        {
-            this.programCurse = pProgramCurse;
-            this.curses = pCurses;
-        }
-
-        public override void addComponent(string pParentID, Component pComponent)
-        {
-            this.programCurse.addComponent(pParentID, pComponent, UserType.Professor);
-        }
-
-        public override Component getComponent(string pId)
-        {
-            return this.programCurse.getComponent(pId);
-        }
-
-        public override DocumentContext getDocument()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void removeComponent(string pId)
-        {
-            this.programCurse.removeComponent(pId, UserType.Professor);
-        }
-
-        public override string ToString()
-        {
-            return this.programCurse.ToString();
-        }
+        this.programCurse = pProgramCurse;
+        this.curses = pCurses;
     }
 
+    public override void addComponent(string pParentID, Component pComponent)
+    {
+        this.programCurse.addComponent(pParentID, pComponent, UserType.Professor);
+    }
+
+    public override Component getComponent(string pId)
+    {
+        return this.programCurse.getComponent(pId);
+    }
+
+    public override DocumentContext getDocument()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void removeComponent(string pId)
+    {
+        this.programCurse.removeComponent(pId, UserType.Professor);
+    }
+
+    public override string ToString()
+    {
+        return this.programCurse.ToString();
+    }
 }
+
