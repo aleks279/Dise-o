@@ -7,14 +7,10 @@ using System.IO;
 
 using iTextSharp.text.pdf;
 using iTextSharp.text;
-// Para que esto funcione, hay que instalar iTextSharp
-// 1. Abrir la consola de paquetes de NuGet
-// 2. Correr el comando: Install-Package iTextSharp
-// 3. Enjoy!
 
-namespace Aplication
+namespace ProgramCurse.Models.Storage
 {
-    class EscritorPDF : IStrategyEscritor<EscritorPDF>
+    public class StoragePDF
     {
         private String filePath = @"salida.pdf";
 
@@ -23,22 +19,18 @@ namespace Aplication
             this.filePath = pFilePath;
         }
 
-        public void Escribir(String pTexto, String pAlgoritmo, String pModo, String pResultado)
+        public void Escribir(String pInfo)
         {
             try
             {
-                if(!File.Exists(filePath))
+                if (!File.Exists(filePath))
                 {
                     var doc = new iTextSharp.text.Document();
                     PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
 
                     doc.Open();
 
-                    doc.Add(new Paragraph("Fecha: " + DateTime.Now.ToString()));
-                    doc.Add(new Paragraph("Algoritmo: " + pAlgoritmo));
-                    doc.Add(new Paragraph("Modo: " + pModo));
-                    doc.Add(new Paragraph("Texto Original: " + pTexto));
-                    doc.Add(new Paragraph("Resultado: " + pResultado));
+                    doc.Add(new Paragraph(pInfo));
 
                     doc.Close();
                 }
@@ -57,22 +49,17 @@ namespace Aplication
                         PdfImportedPage page = writer.GetImportedPage(reader, i);
                         writer.AddPage(page);
                     }
-
-                    newDoc.Add(new Paragraph("Fecha: " + DateTime.Now.ToString()));
-                    newDoc.Add(new Paragraph("Algoritmo: " + pAlgoritmo));
-                    newDoc.Add(new Paragraph("Modo: " + pModo));
-                    newDoc.Add(new Paragraph("Texto Original: " + pTexto));
-                    newDoc.Add(new Paragraph("Resultado: " + pResultado));
+                    newDoc.Add(new Paragraph(pInfo));
+                   
 
                     reader.Close();
                     writer.Close();
                     newDoc.Close();
                 }
             }
-            catch (Exception)
+            catch (Exception error)
             {
-
-                throw;
+                Console.Write(error.Message);
             }
         }
     }

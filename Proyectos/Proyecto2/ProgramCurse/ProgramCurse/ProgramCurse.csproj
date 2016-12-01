@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.10\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -197,6 +200,7 @@
     <Compile Include="Models\Prototype.cs" />
     <Compile Include="Models\SectionContext.cs" />
     <Compile Include="Models\State.cs" />
+    <Compile Include="Models\Storage\StoragePDF.cs" />
     <Compile Include="Models\TEC_CEDA.cs" />
     <Compile Include="Models\TextLineLeaf.cs" />
     <Compile Include="Models\User.cs" />
